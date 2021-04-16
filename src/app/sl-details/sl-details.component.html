@@ -1,0 +1,149 @@
+<div class="details-group-example" *ngFor="let detail of details">
+  <sl-details>
+    <slot slot="summary"><sl-icon name="person" label="Case Details"></sl-icon>Case Details</slot>
+
+    <div class="detail-container">
+      <p class="name details">{{detail.name}}</p>
+      <p class="details">{{detail.email}}</p>
+    </div>
+
+     <sl-badge type="info" pill>{{detail.status}}</sl-badge>
+
+    <div class="detail-container">
+      <p class="title">Requester</p>
+      <p class="details">{{detail.requester}}</p>
+    </div>
+
+    <div class="detail-container">
+      <p class="title">Location</p>
+      <p class="details">{{detail.location}}</p>
+    </div>
+
+    <div class="detail-container">
+     <p class="title">Order ID</p>
+     <p class="details">{{detail.orderId}}</p>
+    </div>
+
+    <div class="detail-container">
+      <p class="title">Date Ordered</p>
+      <p class="details">{{detail.dateOrdered | date: 'MM/dd/YYYY'}}</p>
+    </div>
+
+    <div class="detail-container">
+      <p class="title">Date Created</p>
+      <p class="details">{{detail.dateCreated | date: 'MM/dd/YYYY'}}</p>
+     </div>
+
+    <div class="detail-container">
+      <p class="title">Package</p>
+      <p class="details">{{detail.packageType}}</p>
+    </div>
+
+    <div class="detail-container">
+     <p class="title">Account</p>
+     <p class="details">{{detail.accountNumber}}</p>
+    </div>
+  </sl-details>
+
+  <sl-details>
+    <slot slot="summary"><sl-icon name="search" label="Candidate Details"></sl-icon>Candidate Details</slot>
+
+    <div class="detail-container">
+      <p class="name details">{{detail.name}}</p>
+      <p class="details">{{detail.email}}</p>
+    </div>
+
+    <sl-dialog #dialog label="Dialog" class="dialog-no-overlay-dismiss" [open]="isOpen">
+      Some Text Goes In Here
+      <sl-button slot="footer" type="primary" (click)="openProfile()">Close</sl-button>
+    </sl-dialog>
+
+    <sl-button style="width: 50%" (click)="openProfile()">View Profile</sl-button>
+
+    <div class="detail-container">
+      <p class="title">Government ID</p>
+      <p class="details">{{detail.governmentId}}</p>
+     </div>
+
+     <div class="detail-container">
+      <p class="title">Candidate Date of Birth</p>
+      <p class="details">{{detail.candidateDOB | date: 'longDate'}}</p>
+      <p class="details">{{calcuateAge(detail.candidateDOB)}} years of age</p>
+     </div>
+
+     <div class="detail-container">
+      <p class="title">Client Reference Fields</p>
+      <p class="details">{{detail.clientReference}}</p>
+     </div>
+
+     <div class="detail-container">
+      <p class="title">Location</p>
+      <p class="details">{{detail.location}}</p>
+     </div>
+
+     <div class="detail-container">
+      <p class="title">Order ID</p>
+      <p class="details">{{detail.orderId}}</p>
+     </div>
+  </sl-details>
+
+  <sl-details>
+    <slot slot="summary"><sl-icon name="file-earmark-medical" label="Documents"></sl-icon>Documents</slot>
+    <label for="checkbox">Select All</label>
+    <input name="checkbox" type="checkbox" class="select-all" [checked]="selectAll" (click)="toggleSelectAll()"/>
+
+    <div *ngFor="let attachment of detail.attachments; let i = index;" class="attachments">
+      <input type="checkbox" [checked]="selectAll"/>
+      <a [href]="attachment.attachmentUrl">
+        <sl-button type="info" style="width: 90%">
+          <sl-icon name="cloud-arrow-down" label="download file" slot="suffix" ></sl-icon>
+          Attachment
+        </sl-button>
+      </a>
+    </div>
+
+    <div class="attachment-buttons">
+      <sl-button class="upload" style="width: 80%" type="warning">Upload Document</sl-button>
+      <sl-button class="download" style="width: 80%" href="#" download="shoelace.svg">Download Attachments</sl-button>
+    </div>
+
+  </sl-details>
+</div>
+
+<!--
+
+  When clicked, download all files where checkbox = true
+  Click Event on button executes button
+
+ -->
+
+
+
+<!-- SHOELACE CHECKBOX CODE
+
+  <sl-details>
+  <slot slot="summary"><sl-icon name="file-earmark-medical" label="Documents"></sl-icon>Documents</slot>
+
+  <sl-checkbox class="select-all" [checked]="selectAll" (click)="toggleSelectAll()">Select All</sl-checkbox>
+
+  <div *ngFor="let attachment of detail.attachments" class="attachments">
+    <sl-checkbox [checked]="selectAll"></sl-checkbox>
+    <a [href]="attachment.attachmentUrl">
+      <sl-button type="info" style="width: 90%">
+        <sl-icon name="cloud-arrow-down" label="download file" slot="suffix" ></sl-icon>
+        Attachment
+      </sl-button>
+    </a>
+  </div>
+
+  <div class="attachment-buttons">
+    <sl-button class="upload" style="width: 80%" type="warning">Upload Document</sl-button>
+    <sl-button class="download" style="width: 80%" href="#" download="shoelace.svg">Download Attachments</sl-button>
+  </div>
+
+</sl-details> -->
+
+
+
+
+

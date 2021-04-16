@@ -1,0 +1,38 @@
+<div class="progress-card">
+  <div class="progress-card-header">
+    <sl-icon name="{{localData.backgroundAvatar}}"></sl-icon>
+    <h2>{{localData.backgroundTitle}}</h2>
+</div>
+<div class="progress-card-details">
+  <p>Estimated Completion Date:</p>
+  <!-- label Estimated Completion Date needs to be dynamic based on the status of the check. -->
+  <p>{{getCompleteDate()}}</p>
+</div>
+<div class="progress-card-bar">
+  <h3>{{localData.currentProgress}}%</h3>
+  <sl-progress-bar percentage="{{localData.currentProgress}}" style="--height: 20px"></sl-progress-bar>
+</div>
+</div>
+
+<!--
+  1. Completion Date should be based on the maximum estimated completion date of a case.
+
+  3. If any date is blank the Estimated Completion Date should be "Uknown"
+  4. If any date (or overall date?) is crossed, display "Delayed"
+  5. If everything is complete remove label "Estimated Completion". See # 10
+  7. If an element is canceled or disabled it should not factor into the progress.
+  10. Change label to "Completed" and date must reflect the completed date. Is that stored somewhere?
+
+  NOTE:
+  Will I need a function to determine the "furthest" date based on a series of supplied dates or is that
+  handled on the backend? Currently assuming the data is passed "as is" and the frontend will need to determine
+  the date furthest forward.
+
+  This function can also identify non-dates and take some action based on the information. For instance
+  if no date is supplied ECD = "unknown". If a date has passed ECD = "delayed".
+
+
+
+
+
+ -->

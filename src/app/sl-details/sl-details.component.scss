@@ -1,0 +1,95 @@
+@import '../../styles.scss';
+
+.details-group-example sl-details:not(:last-of-type) {
+  margin-bottom: var(--sl-spacing-xx-small);
+}
+.details-group-example {
+  margin: 2rem 0 0 2rem;
+  max-width: 15rem;
+}
+
+sl-button {
+  margin: 0 auto;
+  margin-bottom: 1.5rem;
+}
+
+p, sl-badge, sl-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+sl-badge {
+  margin: 1.5rem;
+}
+
+sl-details slot {
+  color: white;
+}
+
+sl-details::part(summary) {
+  background: $color-primary;
+}
+
+sl-details::part(summary-icon) {
+  display: none;
+}
+
+sl-details::part(header) {
+  background-color: $color-primary;
+}
+
+.title {
+  font-size: .8rem;
+  font-weight: 500;
+  margin: 0;
+  padding: 0;
+}
+
+.details {
+  font-size: 1rem;
+  margin: .5rem 0 .5rem 0;
+}
+
+.detail-container {
+  margin-bottom: 1.5rem;
+}
+
+.name {
+  font-size: 1.5rem;
+}
+
+  sl-button.download::part(base) {
+    border: 2px solid #F59E0B;
+    color: #F59E0B;
+  }
+
+  .upload {
+    margin-bottom: 5px;
+  }
+
+  sl-icon {
+    margin-right: 20px;
+
+    &::part(base) {
+      text-align: left;
+    }
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  .attachments {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .select-all {
+    margin: 20px 0 10px 16px;
+  }
+
+  .attachment-buttons {
+    margin-top: 20px;
+  }
