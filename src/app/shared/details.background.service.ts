@@ -27,9 +27,9 @@ const DETAILS:IDetails[] = [
     orderId: 89124,
     dateOrdered: new Date('01/01/2021'),
     dateCreated: new Date('01/10/2021'),
-    packageType: 'Case Management',
+    packageType: 'Background Screen',
     accountNumber: 12349876,
-    governmentId: '123-45-6789',
+    governmentId: '',
     candidateDOB: new Date('1950-01-20'),
     clientReference: 'CR1',
     attachments: [

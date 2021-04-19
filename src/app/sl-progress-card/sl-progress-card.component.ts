@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { BackgroundService } from '../shared/background.service'
 import { IBackground } from '../shared/background.model'
+import { DetailsService } from '../shared/details.background.service';
+import { IDetails } from '../shared/details.model'
 
 @Component({
   selector: 'app-sl-progress-card',
@@ -8,6 +10,7 @@ import { IBackground } from '../shared/background.model'
   styleUrls: ['./sl-progress-card.component.scss']
 })
 export class SlProgressCardComponent implements OnInit {
+  details: IDetails[] | undefined
   backgrounds: IBackground[] | undefined
   localData = {
     id: 1,
@@ -19,12 +22,16 @@ export class SlProgressCardComponent implements OnInit {
     ]
   }
 
-  constructor(private backgroundService: BackgroundService) { }
+  constructor(private backgroundService: BackgroundService, private detailService: DetailsService) { }
 
   ngOnInit() {
       this.backgroundService.getBackgroundChecks().subscribe(backgrounds => {
         this.backgrounds = backgrounds
+    }),
+    this.detailService.getDetails().subscribe(details => {
+      this.details = details
     })
+
   }
 
 /*

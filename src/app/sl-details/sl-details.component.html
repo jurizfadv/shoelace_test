@@ -1,5 +1,5 @@
 <div class="details-group-example" *ngFor="let detail of details">
-  <sl-details>
+  <sl-details open>
     <slot slot="summary"><sl-icon name="person" label="Case Details"></sl-icon>Case Details</slot>
 
     <div class="detail-container">
@@ -43,6 +43,14 @@
      <p class="title">Account</p>
      <p class="details">{{detail.accountNumber}}</p>
     </div>
+
+    <div>
+      <sl-button (click)="showMore()" class="show-more">Show More</sl-button>
+        <div [hidden]="moreDetails" >
+          <p>There is some stuff here</p>
+        </div>
+    </div>
+
   </sl-details>
 
   <sl-details>
@@ -53,7 +61,7 @@
       <p class="details">{{detail.email}}</p>
     </div>
 
-    <sl-dialog #dialog label="Dialog" class="dialog-no-overlay-dismiss" [open]="isOpen">
+    <sl-dialog #dialog label="Dialog" class="dialog-no-overlay-dismiss" [open]="isOpen" (click)="'sl-show'">
       Some Text Goes In Here
       <sl-button slot="footer" type="primary" (click)="openProfile()">Close</sl-button>
     </sl-dialog>
@@ -62,7 +70,7 @@
 
     <div class="detail-container">
       <p class="title">Government ID</p>
-      <p class="details">{{detail.governmentId}}</p>
+      <p class="details">{{detail.governmentId === '' ? '000-00-0000' : detail.governmentId}}</p>
      </div>
 
      <div class="detail-container">
@@ -93,27 +101,29 @@
     <input name="checkbox" type="checkbox" class="select-all" [checked]="selectAll" (click)="toggleSelectAll()"/>
 
     <div *ngFor="let attachment of detail.attachments; let i = index;" class="attachments">
-      <input type="checkbox" [checked]="selectAll"/>
-      <a [href]="attachment.attachmentUrl">
-        <sl-button type="info" style="width: 90%">
+      <input type="checkbox" [checked]="(!attachment.selected ? attachment.selected : !attachment.selected) || selectAll"/>
+        <div class="attachment" type="info" style="width: 70%">
           <sl-icon name="cloud-arrow-down" label="download file" slot="suffix" ></sl-icon>
           Attachment
-        </sl-button>
-      </a>
+        </div>
     </div>
 
     <div class="attachment-buttons">
       <sl-button class="upload" style="width: 80%" type="warning">Upload Document</sl-button>
-      <sl-button class="download" style="width: 80%" href="#" download="shoelace.svg">Download Attachments</sl-button>
+      <sl-button class="download" style="width: 80%" >Download Attachments</sl-button>
     </div>
 
   </sl-details>
 </div>
 
 <!--
+  Problem: When user clicks Download Attachments, all attachments with checkbox selected should download.
+  1. Since the actual files will not have a boolean "selected" option, may be best to go with adding a class to the input when the checkbox is selected.
+  The class will indicate this file should be downloaded.
+  2. The button click will need to initate a loop through the elements. This will most likely be done with a function. When run, if an element with the class "selected" is found...
+  3. ...a call to the attachmentUrl should be made so as to download the file.
+  4. Nice to have: if more than one file is selected zip the files first before download and pull down the zip file.
 
-  When clicked, download all files where checkbox = true
-  Click Event on button executes button
 
  -->
 

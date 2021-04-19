@@ -3,7 +3,8 @@
     <sl-icon name="{{localData.backgroundAvatar}}"></sl-icon>
     <h2>{{localData.backgroundTitle}}</h2>
 </div>
-<div class="progress-card-details">
+<div class="progress-card-details" *ngFor="let detail of details">
+  <p>Order ID: {{detail.orderId}}</p>
   <p>Estimated Completion Date:</p>
   <!-- label Estimated Completion Date needs to be dynamic based on the status of the check. -->
   <p>{{getCompleteDate()}}</p>
@@ -15,10 +16,7 @@
 </div>
 
 <!--
-  1. Completion Date should be based on the maximum estimated completion date of a case.
-
-  3. If any date is blank the Estimated Completion Date should be "Uknown"
-  4. If any date (or overall date?) is crossed, display "Delayed"
+  TODO
   5. If everything is complete remove label "Estimated Completion". See # 10
   7. If an element is canceled or disabled it should not factor into the progress.
   10. Change label to "Completed" and date must reflect the completed date. Is that stored somewhere?
@@ -30,9 +28,4 @@
 
   This function can also identify non-dates and take some action based on the information. For instance
   if no date is supplied ECD = "unknown". If a date has passed ECD = "delayed".
-
-
-
-
-
  -->

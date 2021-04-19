@@ -14,6 +14,7 @@ export class SlDetailsComponent implements OnInit {
   isDisabled:boolean = false;
   selectAll:boolean = false;
   availableAttachments: IAttachments[] = []
+  moreDetails:boolean = true
 
   isOpen:string = ''
   constructor(private detailsService: DetailsService) {
@@ -50,4 +51,19 @@ export class SlDetailsComponent implements OnInit {
   openProfile() {
     this.isOpen === 'open' ? this.isOpen = '' : this.isOpen = 'open'
   }
+
+  showMore() {
+    this.moreDetails === true ? this.moreDetails = false: this.moreDetails = true
+  }
+
+  /*
+  downloadAll(link) {
+
+    if(attachment.selected) {
+      attachment.link
+    }
+  }
+
+  */
+
 }
