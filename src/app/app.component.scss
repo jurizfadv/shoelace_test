@@ -1,0 +1,26 @@
+.container {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  grid-template-rows: 1fr 5fr;
+}
+
+.container-details-card {
+  grid-column: 1 / 1;
+  grid-row: 1 / 5;
+  display: flex;
+  justify-content: center;
+}
+
+.container-progress-card {
+  grid-column: 2 / 2;
+  grid-row: 1 /1;
+  border: 1px solid blue;
+  height: 25vh;
+}
+
+.container-table-card {
+  grid-column: 2 / 2;
+  grid-row: 2 / 5;
+  border: 1px solid yellow;
+  height: 75vh;
+}

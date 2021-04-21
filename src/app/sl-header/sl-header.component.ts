@@ -1,3 +1,5 @@
+// NOTE - This was just a test. Not using
+
 import { Component, OnInit } from '@angular/core';
 
 @Component({

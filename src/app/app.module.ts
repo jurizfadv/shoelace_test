@@ -9,13 +9,15 @@ import { SlProgressCardComponent } from './sl-progress-card/sl-progress-card.com
 import { SlDetailsComponent } from './sl-details/sl-details.component';
 import { BackgroundService } from './shared/background.service';
 import { DetailsService } from './shared/details.background.service';
+import { TableComponent } from './table/table.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SlHeaderComponent,
     SlProgressCardComponent,
-    SlDetailsComponent
+    SlDetailsComponent,
+    TableComponent,
   ],
   imports: [
     BrowserModule,

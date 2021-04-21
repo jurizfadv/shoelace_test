@@ -45,7 +45,7 @@
     </div>
 
     <div>
-      <sl-button (click)="showMore()" class="show-more">Show More</sl-button>
+      <sl-button (click)="showMore()" class="show-more">{{moreDetails ? 'Show More' : 'Show Less'}}</sl-button>
         <div [hidden]="moreDetails" >
           <p>There is some stuff here</p>
         </div>
