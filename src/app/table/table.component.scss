@@ -1,4 +1,43 @@
 td {
   width: 75vw;
-  border: 1px solid red;
+}
+
+sl-input {
+  width: 30vw;
+  margin-right: 1em;
+}
+
+sl-button {
+  margin-right: 1em;
+}
+
+.table-container {
+  border: 1px solid grey;
+  border-radius: 5px;
+  box-shadow: 1px 5px 5px darkgrey;
+  margin-right: 2em;
+
+  &-table {
+    margin: 1em 0 0 1em;
+    padding: 1em;
+  }
+}
+.table-header-action {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 1em 0 0 1em;
+
+  &-search {
+    display: flex;
+    flex-direction: row;
+  }
+
+  &-actions {
+    display: flex;
+    flex-direction: row;
+    margin-right: 2em;
+  }
+
+
 }

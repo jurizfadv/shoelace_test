@@ -1,37 +1,68 @@
-<table>
-  <thead>
-    <tr>
-      <th>
-        Text Here
-      </th>
-      </tr>
-    </thead>
-      <tbody >
-        <tr>
-          <td>
-            I guess Cell
-          </td>
-        </tr>
-        <tr>
-          <td>
-            I guess Cell
-          </td>
-        </tr>
-        <tr>
-          <td>
-            I guess Cell
-          </td>
-        </tr>
-        <tr>
-          <td>
-            I guess Cell
-          </td>
-        </tr>
-        <tr>
-          <td>
-            I guess Cell
-          </td>
-        </tr>
-      </tbody>
+<div class="table-container">
 
-</table>
+  <div class="table-header-action">
+
+    <div class="table-header-action-actions">
+      <sl-button type="info">View Report</sl-button>
+      <sl-button size="medium" caret type="primary">Actions</sl-button>
+      <sl-button size="medium" caret>Adjudicate</sl-button>
+      <sl-button type="default" size="large" circle><sl-icon name="funnel-fill"></sl-icon></sl-button>
+    </div>
+
+  </div>
+
+  <div class="table-container-table">
+    <table>
+        <tr>
+          <th align="left"><input type="checkbox"/></th>
+          <th align="left">Type</th>
+          <th align="left">Completion Date</th>
+          <th align="left">Notes</th>
+          <th align="left">Status</th>
+          <th align="left"></th>
+        </tr>
+
+        <tr>
+          <td><input type="checkbox"/></td>
+          <td>This is a cell</td>
+          <td>04/01/2021</td>
+          <td>These are notes</td>
+          <td><sl-badge type="primary" pill>Primary</sl-badge></td>
+          <td><sl-icon name="caret-down-fill"></sl-icon></td>
+        </tr>
+        <tr>
+          <td><input type="checkbox"/></td>
+          <td>This is a cell</td>
+          <td>04/01/2021</td>
+          <td>These are notes</td>
+          <td><sl-badge type="info" pill>Info</sl-badge></td>
+          <td><sl-icon name="caret-down-fill"></sl-icon></td>
+        </tr>
+        <tr>
+          <td><input type="checkbox"/></td>
+          <td>This is a cell</td>
+          <td>04/01/2021</td>
+          <td>These are notes</td>
+          <td><sl-badge type="success" pill>Success</sl-badge></td>
+          <td><sl-icon name="caret-down-fill"></sl-icon></td>
+        </tr>
+        <tr>
+          <td><input type="checkbox"/></td>
+          <td>This is a cell</td>
+          <td>04/01/2021</td>
+          <td>These are notes</td>
+          <td><sl-badge type="warning" pill>Warning</sl-badge></td>
+          <td><sl-icon name="caret-down-fill"></sl-icon></td>
+        </tr>
+        <tr>
+          <td><input type="checkbox"/></td>
+          <td>This is a cell</td>
+          <td>04/01/2021</td>
+          <td>These are notes</td>
+          <td><sl-badge type="danger" pill>Danger</sl-badge></td>
+          <td><sl-icon name="caret-down-fill"></sl-icon></td>
+        </tr>
+
+    </table>
+  </div>
+</div>
