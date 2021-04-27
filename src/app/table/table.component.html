@@ -12,57 +12,40 @@
   </div>
 
   <div class="table-container-table">
-    <table>
-        <tr>
-          <th align="center" style="width: 5%"><input type="checkbox"/></th>
-          <th align="left" style="width: 20%">Type</th>
-          <th align="left" style="width: 25%">Completion Date <sl-icon name="caret-down-fill"></sl-icon></th>
-          <th align="left" style="width: 30%">Notes</th>
-          <th align="left" style="width: 15%">Status <sl-icon name="caret-down-fill"></sl-icon></th>
-          <th align="left" style="width: 5"></th>
-        </tr>
+    <table class="fold-table">
 
-        <tr>
-          <td align="center" ><input type="checkbox"/></td>
-          <td>This is a cell</td>
-          <td>04/01/2021</td>
-          <td>These are notes</td>
-          <td><sl-badge type="primary" pill>Active</sl-badge></td>
-          <td><sl-icon name="caret-down-fill"></sl-icon></td>
-        </tr>
-        <tr>
-          <td align="center" ><input type="checkbox"/></td>
-          <td>This is a cell</td>
-          <td>04/01/2021</td>
-          <td>These are notes</td>
-          <td><sl-badge type="info" pill>On Hold</sl-badge></td>
-          <td><sl-icon name="caret-down-fill"></sl-icon></td>
-        </tr>
-        <tr>
-          <td align="center" ><input type="checkbox"/></td>
-          <td>This is a cell</td>
-          <td>04/01/2021</td>
-          <td>These are notes</td>
-          <td><sl-badge type="success" pill>Complete</sl-badge></td>
-          <td><sl-icon name="caret-down-fill"></sl-icon></td>
-        </tr>
-        <tr>
-          <td align="center" ><input type="checkbox"/></td>
-          <td>This is a cell</td>
-          <td>04/01/2021</td>
-          <td>These are notes</td>
-          <td><sl-badge type="warning" pill>Delayed</sl-badge></td>
-          <td><sl-icon name="caret-down-fill"></sl-icon></td>
-        </tr>
-        <tr>
-          <td align="center" ><input type="checkbox"/></td>
-          <td>This is a cell</td>
-          <td>04/01/2021</td>
-          <td>These are notes</td>
-          <td><sl-badge type="danger" pill>Canceled</sl-badge></td>
-          <td><sl-icon name="caret-down-fill"></sl-icon></td>
-        </tr>
+      <thead>
+        <th align="center" style="width: 5%"><input type="checkbox"/></th>
+        <th align="left" style="width: 20%">Type</th>
+        <th align="left" style="width: 25%">Completion Date <sl-icon name="caret-down-fill"></sl-icon></th>
+        <th align="left" style="width: 30%">Notes</th>
+        <th align="left" style="width: 15%">Status <sl-icon name="caret-down-fill"></sl-icon></th>
+        <th align="left" style="width: 5"></th>
+      </thead>
 
+      <tbody>
+
+        <ng-container *ngFor="let data of dataSet; let i = index">
+          <tr>
+            <td align="center" ><input type="checkbox"/></td>
+            <td>{{ data.thing1 }}</td>
+            <td>{{ data.thing2 }}</td>
+            <td>{{ data.thing3 }}</td>
+            <td><sl-badge type="warning" pill>{{ data.thing5 }}</sl-badge></td>
+            <td><sl-icon name="caret-down-fill"></sl-icon></td>
+          </tr>
+
+          <ng-container>
+            <tr hidden=true>
+              <td colspan="7">
+                  <h3>Testing</h3>
+                  <p>{{ data.thing4 }}</p>
+              </td>
+            </tr>
+          </ng-container>
+        </ng-container>
+
+      </tbody>
     </table>
   </div>
 </div>

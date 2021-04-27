@@ -56,6 +56,10 @@ export class SlDetailsComponent implements OnInit {
     this.moreDetails === true ? this.moreDetails = false: this.moreDetails = true
   }
 
+  getAttachments() {
+
+  }
+
   /*
   downloadAll(link) {
 

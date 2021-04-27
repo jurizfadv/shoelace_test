@@ -28,5 +28,4 @@ const BACKGROUND:IBackground[] = [
     date2: new Date('02/02/2021'),
     date3: new Date('03/15/2021')
   }
-
 ]

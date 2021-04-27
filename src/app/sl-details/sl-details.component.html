@@ -101,16 +101,16 @@
     <input name="checkbox" type="checkbox" class="select-all" [checked]="selectAll" (click)="toggleSelectAll()"/>
 
     <div *ngFor="let attachment of detail.attachments; let i = index;" class="attachments">
-      <input type="checkbox" [checked]="(!attachment.selected ? attachment.selected : !attachment.selected) || selectAll"/>
+      <input type="checkbox" [checked]="(!attachment.selected ? attachment.selected : !attachment.selected) || selectAll" />
         <div class="attachment" type="info" style="width: 70%">
-          <sl-icon name="cloud-arrow-down" label="download file" slot="suffix" ></sl-icon>
+          <sl-icon name="cloud-arrow-down" label="download file" slot="suffix"></sl-icon>
           Attachment
         </div>
     </div>
 
     <div class="attachment-buttons">
       <sl-button class="upload" style="width: 80%" type="warning">Upload Document</sl-button>
-      <sl-button class="download" style="width: 80%" >Download Attachments</sl-button>
+      <sl-button class="download" style="width: 80%" (click)="getAttachments()">Download Attachments</sl-button>
     </div>
 
   </sl-details>
