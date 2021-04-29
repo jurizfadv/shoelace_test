@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, HostListener, ViewChild} from '@angular/core';
+import SlDetails from 'dist/shoelace/assets/shoelace/components/details/details';
+
 import { DetailsService } from '../shared/details.background.service';
 import { IAttachments, IDetails } from '../shared/details.model';
 
@@ -17,7 +19,21 @@ export class SlDetailsComponent implements OnInit {
   moreDetails:boolean = true
 
   isOpen:string = ''
-  constructor(private detailsService: DetailsService) {
+  constructor(private detailsService: DetailsService, public el:ElementRef) {
+
+   };
+
+   @HostListener('sl-show', ['$event']) doSomething(event:any) {
+     console.log('inside the showing host');
+
+     const container = document.querySelector('.details-group-example');
+      container?.querySelectorAll('sl-details').forEach((details: SlDetails) => {
+        details.open = event?.target === details;
+      })
+   };
+
+   @HostListener('sl-hide') doSomethingElse() {
+     console.log('inside the hiding host')
    }
 
   ngOnInit() {
@@ -54,10 +70,6 @@ export class SlDetailsComponent implements OnInit {
 
   showMore() {
     this.moreDetails === true ? this.moreDetails = false: this.moreDetails = true
-  }
-
-  getAttachments() {
-
   }
 
   /*

@@ -38,12 +38,23 @@ export class TableComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    // console.log('**Printing details object: '+ document.querySelector('.details-group-example'));
   }
 
   findDetails (idx:number) {
     if (idx === this.dataSet[idx].id){
 
     }
+  }
+
+  handleClick(event:any): void{
+    //   document.querySelector('.details-group-example').addEventListener('sl-show', ($event) => {
+    //     console.log('Inside event handle', event);
+    //  });
+              console.log(event);
+              // console.log(event.target)
+
+
   }
 
 }

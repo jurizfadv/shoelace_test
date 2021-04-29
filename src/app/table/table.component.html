@@ -26,7 +26,7 @@
       <tbody>
 
         <ng-container *ngFor="let data of dataSet; let i = index">
-          <tr>
+          <tr (click)="handleClick($event)">
             <td align="center" ><input type="checkbox"/></td>
             <td>{{ data.thing1 }}</td>
             <td>{{ data.thing2 }}</td>

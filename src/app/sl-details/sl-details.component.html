@@ -1,5 +1,5 @@
-<div class="details-group-example" *ngFor="let detail of details">
-  <sl-details open>
+<div class="details-group-example" *ngFor="let detail of details" >
+  <sl-details [open]="true">
     <slot slot="summary"><sl-icon name="person" label="Case Details"></sl-icon>Case Details</slot>
 
     <div class="detail-container">
@@ -53,7 +53,7 @@
 
   </sl-details>
 
-  <sl-details>
+  <sl-details [open]="false">
     <slot slot="summary"><sl-icon name="search" label="Candidate Details"></sl-icon>Candidate Details</slot>
 
     <div class="detail-container">
@@ -95,7 +95,7 @@
      </div>
   </sl-details>
 
-  <sl-details>
+  <sl-details [open]="false">
     <slot slot="summary"><sl-icon name="file-earmark-medical" label="Documents"></sl-icon>Documents</slot>
     <label for="checkbox">Select All</label>
     <input name="checkbox" type="checkbox" class="select-all" [checked]="selectAll" (click)="toggleSelectAll()"/>
@@ -110,7 +110,7 @@
 
     <div class="attachment-buttons">
       <sl-button class="upload" style="width: 80%" type="warning">Upload Document</sl-button>
-      <sl-button class="download" style="width: 80%" (click)="getAttachments()">Download Attachments</sl-button>
+      <sl-button class="download" style="width: 80%">Download Attachments</sl-button>
     </div>
 
   </sl-details>
