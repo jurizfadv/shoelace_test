@@ -24,7 +24,8 @@ export class SlDetailsComponent implements OnInit {
    };
 
    @HostListener('sl-show', ['$event']) doSomething(event:any) {
-     console.log('inside the showing host');
+     console.log('inside the showing host' + event.target.value
+     );
 
      const container = document.querySelector('.details-group-example');
       container?.querySelectorAll('sl-details').forEach((details: SlDetails) => {
