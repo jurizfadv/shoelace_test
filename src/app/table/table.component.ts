@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./table.component.scss']
 })
 export class TableComponent implements OnInit {
-  expandData = false
+  expandData = true;
   dataSet = [
     {
     id: 1,
@@ -47,14 +47,14 @@ export class TableComponent implements OnInit {
     }
   }
 
-  handleClick(event:any): void{
-    //   document.querySelector('.details-group-example').addEventListener('sl-show', ($event) => {
-    //     console.log('Inside event handle', event);
-    //  });
-              console.log(event);
-              // console.log(event.target)
-
-
-  }
+  handleClick(): void{
+    if(this.expandData) {
+      this.expandData = !this.expandData
+    }else{
+      this.expandData = true;
+    }
+      // this.expandData ? !this.expandData : this.expandData;
+      console.log(this.expandData)
+  };
 
 }

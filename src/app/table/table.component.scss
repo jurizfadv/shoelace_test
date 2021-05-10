@@ -59,34 +59,35 @@ sl-button {
 
 }
 
-// fold table
-table.fold-table {
-  > tbody {
-    // view segment
-    > tr.view {
-      td, th {cursor: pointer;}
-    }
-
-    // fold segment
-    > div.fold {
-      display: none;
-    }
-  }
+.details-container {
+  display: grid;
+  grid-template-columns: repeat(3, 200px);
+  grid-template-rows: repeat(2, auto);
+  gap: 10px 10px;
+  margin-left: 10px;
+  border: 3px solid red;
 }
 
-
-
-// fold content
-.fold-content {
-  padding: 1em;
-  h3 { margin-top:0; }
-  > table {
-    border: 2px solid #ccc;
-    > tbody {
-      tr:nth-child(odd) {
-        background: #eee;
-      }
-    }
-  }
+.results {
+  grid-column: 1 / 1 ;
+  grid-row: 1 / 1;
+  background-color: grey;
 }
 
+.covered {
+  grid-column: 1 / 1 ;
+  grid-row: 2 / 2;
+  background-color: blue;
+}
+
+.process-history {
+  grid-column: 2 / 2 ;
+  grid-row: 1 / 1;
+  background-color: orange;
+}
+
+.remarks-alerts {
+  grid-column: 2 / 2 ;
+  grid-row: 2 / 2;
+  background-color: green;
+}

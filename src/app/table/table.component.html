@@ -6,7 +6,6 @@
       <sl-button type="info">View Report</sl-button>
       <sl-button size="medium" caret type="primary">Actions</sl-button>
       <sl-button size="medium" caret>Adjudicate</sl-button>
-      <sl-button type="default" size="large" circle><sl-icon name="funnel-fill"></sl-icon></sl-button>
     </div>
 
   </div>
@@ -26,7 +25,7 @@
       <tbody>
 
         <ng-container *ngFor="let data of dataSet; let i = index">
-          <tr (click)="handleClick($event)">
+          <tr (click)="handleClick()">
             <td align="center" ><input type="checkbox"/></td>
             <td>{{ data.thing1 }}</td>
             <td>{{ data.thing2 }}</td>
@@ -35,14 +34,34 @@
             <td><sl-icon name="caret-down-fill"></sl-icon></td>
           </tr>
 
-          <ng-container>
-            <tr hidden=true>
-              <td colspan="7">
-                  <h3>Testing</h3>
-                  <p>{{ data.thing4 }}</p>
-              </td>
-            </tr>
-          </ng-container>
+          <tr>
+            <div class="details-container" [hidden]="expandData">
+              <div class="results">
+                <h3>Results</h3>
+                <p>text here</p>
+                <p>text here</p>
+                <p>text here</p>
+              </div>
+              <div class="process-history">
+                <h3>Process History</h3>
+                <p>text here</p>
+                <p>text here</p>
+              </div>
+              <div class="covered">
+                <h3>Covered</h3>
+                <p>text here</p>
+                <p>text here</p>
+              </div>
+              <div class="remarks-alerts">
+                <h3>Remarks & Alerts</h3>
+                <p>text here</p>
+                <p>text here</p>
+              </div>
+              <div class="details-status">
+                <h4>Possible Delay</h4>
+              </div>
+            </div>
+          </tr>
         </ng-container>
 
       </tbody>
