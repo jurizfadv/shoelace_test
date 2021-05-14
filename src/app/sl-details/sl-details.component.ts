@@ -1,7 +1,8 @@
-import { Component, ElementRef, OnInit, HostListener, ViewChild} from '@angular/core';
+import { Component, ElementRef, OnInit, HostListener } from '@angular/core';
 import SlDetails from 'dist/shoelace/assets/shoelace/components/details/details';
 
 import { DetailsService } from '../shared/details.background.service';
+import { DataService } from '../services/data.service';
 import { IAttachments, IDetails } from '../shared/details.model';
 
 @Component({
@@ -10,16 +11,18 @@ import { IAttachments, IDetails } from '../shared/details.model';
   styleUrls: ['./sl-details.component.scss']
 })
 export class SlDetailsComponent implements OnInit {
-  details: IDetails[] | undefined
-  showAge:any;
-  candidateAge:number = 0;
-  isDisabled:boolean = false;
-  selectAll:boolean = false;
   availableAttachments: IAttachments[] = []
-  moreDetails:boolean = true
-
+  candidateAge:number = 0;
+  details: IDetails[] | undefined
+  isDisabled:boolean = false;
   isOpen:string = ''
-  constructor(private detailsService: DetailsService, public el:ElementRef) {
+  moreDetails:boolean = true;
+  pokemons: any[] = [];
+  selectAll:boolean = false;
+  showAge:any;
+  totalPokemons: number;
+
+  constructor(private detailsService: DetailsService, public el:ElementRef, private dataService: DataService) {
 
    };
 
@@ -40,6 +43,22 @@ export class SlDetailsComponent implements OnInit {
   ngOnInit() {
     this.detailsService.getDetails().subscribe(details => {
       this.details = details;
+    });
+    this.getPokemons();
+  }
+
+  getPokemons() {
+    this.dataService.getPokemon()
+    .subscribe((response:any) => {
+      this.totalPokemons = response.count;
+
+      response.results.forEach(result => {
+        this.dataService.getAdditionalPokemon(result.name)
+          .subscribe((uniqueResponse:any) => {
+            this.pokemons.push(uniqueResponse);
+            console.log(this.pokemons)
+          })
+      })
     })
   }
 
@@ -72,15 +91,5 @@ export class SlDetailsComponent implements OnInit {
   showMore() {
     this.moreDetails === true ? this.moreDetails = false: this.moreDetails = true
   }
-
-  /*
-  downloadAll(link) {
-
-    if(attachment.selected) {
-      attachment.link
-    }
-  }
-
-  */
 
 }

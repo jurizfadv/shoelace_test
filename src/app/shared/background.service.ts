@@ -9,11 +9,9 @@ export class BackgroundService {
     setTimeout(() => {subject.next(BACKGROUND); subject.complete();}, 1000)
     return subject
   }
-
-  getBackgroundCheck(id:number):IBackground | undefined {
-    return BACKGROUND.find(background => background.id === id)
-  }
-
+  // getBackgroundCheck(id:number):IBackground | undefined {
+  //   return BACKGROUND.find(background => background.id === id)
+  // }
 
 }
 

@@ -3,12 +3,13 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SlHeaderComponent } from './sl-header/sl-header.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { SlProgressCardComponent } from './sl-progress-card/sl-progress-card.component';
-import { SlDetailsComponent } from './sl-details/sl-details.component';
 import { BackgroundService } from './shared/background.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DetailsService } from './shared/details.background.service';
+import { HttpClientModule } from '@angular/common/http';
+import { SlHeaderComponent } from './sl-header/sl-header.component';
+import { SlDetailsComponent } from './sl-details/sl-details.component';
+import { SlProgressCardComponent } from './sl-progress-card/sl-progress-card.component';
 import { TableComponent } from './table/table.component';
 
 @NgModule({
@@ -20,9 +21,10 @@ import { TableComponent } from './table/table.component';
     TableComponent,
   ],
   imports: [
-    BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    BrowserModule,
+    HttpClientModule
   ],
   providers: [BackgroundService, DetailsService],
   bootstrap: [AppComponent],

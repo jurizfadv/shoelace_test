@@ -18,7 +18,7 @@ export class SlProgressCardComponent implements OnInit {
     backgroundAvatar: 'person-circle',
     currentProgress: 40,
     dates: [
-      '2021-02-20T10:15:34.098', '2021-04-15T09:01:34.098', '2021-03-01T22:22:34.098', '2021-01-10T10:45:34.098'
+      '2021-04-20T10:15:34.098', '2021-07-15T09:01:34.098', '2021-08-01T22:22:34.098', '2021-09-10T10:45:34.098'
     ]
   }
 
@@ -56,7 +56,7 @@ This is what is displayed to the user.
     for(let date of this.localData.dates) {
       if(date === '') {
         return "Unknown"
-      } else if(Date.parse(date) > Date.now()) {
+      } else if(Date.parse(date) < Date.now()) {
         return "Expired"
     }
   }

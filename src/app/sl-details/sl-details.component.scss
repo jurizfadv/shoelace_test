@@ -54,6 +54,12 @@ sl-details::part(header) {
 
 .detail-container {
   margin-bottom: 1.5rem;
+
+  &-pokemon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 .name {

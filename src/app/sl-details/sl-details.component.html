@@ -1,3 +1,178 @@
+<div class="details-group-example" *ngFor="let detail of details">
+
+    <sl-details [open]="true" *ngFor="let pokemon of pokemons">
+      <slot slot="summary"><sl-icon name="person" label="API Data"></sl-icon>Data From API</slot>
+
+      <div class="detail-container-pokemon">
+        <h4>Name</h4>
+        <p class="details">{{pokemon.name | titlecase }}</p>
+        <h4>Weight</h4>
+        <p class="details">{{pokemon.weight}}</p>
+        <h4>Abilities</h4>
+        <p class="details">{{pokemon.abilities[0].ability.name | titlecase}}</p>
+        <p class="details">{{pokemon.abilities[1].ability.name | titlecase }}</p>
+
+      </div>
+
+    </sl-details>
+
+  <sl-details [open]="false">
+    <slot slot="summary"><sl-icon name="person" label="Case Details"></sl-icon>Case Details</slot>
+
+    <div class="detail-container">
+      <p class="name details">{{detail.name}}</p>
+      <p class="details">{{detail.email}}</p>
+    </div>
+
+     <sl-badge type="info" pill>{{detail.status}}</sl-badge>
+
+    <div class="detail-container">
+      <p class="title">Requester</p>
+      <p class="details">{{detail.requester}}</p>
+    </div>
+
+    <div class="detail-container">
+      <p class="title">Location</p>
+      <p class="details">{{detail.location}}</p>
+    </div>
+
+    <div class="detail-container">
+     <p class="title">Order ID</p>
+     <p class="details">{{detail.orderId}}</p>
+    </div>
+
+    <div class="detail-container">
+      <p class="title">Date Ordered</p>
+      <p class="details">{{detail.dateOrdered | date: 'MM/dd/YYYY'}}</p>
+    </div>
+
+    <div class="detail-container">
+      <p class="title">Date Created</p>
+      <p class="details">{{detail.dateCreated | date: 'MM/dd/YYYY'}}</p>
+     </div>
+
+    <div class="detail-container">
+      <p class="title">Package</p>
+      <p class="details">{{detail.packageType}}</p>
+    </div>
+
+    <div class="detail-container">
+     <p class="title">Account</p>
+     <p class="details">{{detail.accountNumber}}</p>
+    </div>
+
+    <div>
+      <sl-button (click)="showMore()" class="show-more">{{moreDetails ? 'Show More' : 'Show Less'}}</sl-button>
+        <div [hidden]="moreDetails" >
+          <p>There is some stuff here</p>
+        </div>
+    </div>
+
+  </sl-details>
+
+  <sl-details [open]="false">
+    <slot slot="summary"><sl-icon name="search" label="Candidate Details"></sl-icon>Candidate Details</slot>
+
+    <div class="detail-container">
+      <p class="name details">{{detail.name}}</p>
+      <p class="details">{{detail.email}}</p>
+    </div>
+
+    <sl-dialog #dialog label="Dialog" class="dialog-no-overlay-dismiss" [open]="isOpen" (click)="'sl-show'">
+      Some Text Goes In Here
+      <sl-button slot="footer" type="primary" (click)="openProfile()">Close</sl-button>
+    </sl-dialog>
+
+    <sl-button style="width: 50%" (click)="openProfile()">View Profile</sl-button>
+
+    <div class="detail-container">
+      <p class="title">Government ID</p>
+      <p class="details">{{detail.governmentId === '' ? '000-00-0000' : detail.governmentId}}</p>
+     </div>
+
+     <div class="detail-container">
+      <p class="title">Candidate Date of Birth</p>
+      <p class="details">{{detail.candidateDOB | date: 'longDate'}}</p>
+      <p class="details">{{calcuateAge(detail.candidateDOB)}} years of age</p>
+     </div>
+
+     <div class="detail-container">
+      <p class="title">Client Reference Fields</p>
+      <p class="details">{{detail.clientReference}}</p>
+     </div>
+
+     <div class="detail-container">
+      <p class="title">Location</p>
+      <p class="details">{{detail.location}}</p>
+     </div>
+
+     <div class="detail-container">
+      <p class="title">Order ID</p>
+      <p class="details">{{detail.orderId}}</p>
+     </div>
+  </sl-details>
+
+  <sl-details [open]="false">
+    <slot slot="summary"><sl-icon name="file-earmark-medical" label="Documents"></sl-icon>Documents</slot>
+    <label for="checkbox">Select All</label>
+    <input name="checkbox" type="checkbox" class="select-all" [checked]="selectAll" (click)="toggleSelectAll()"/>
+
+    <div *ngFor="let attachment of detail.attachments; let i = index;" class="attachments">
+      <input type="checkbox" [checked]="(!attachment.selected ? attachment.selected : !attachment.selected) || selectAll" />
+        <div class="attachment" type="info" style="width: 70%">
+          <sl-icon name="cloud-arrow-down" label="download file" slot="suffix"></sl-icon>
+          Attachment
+        </div>
+    </div>
+
+    <div class="attachment-buttons">
+      <sl-button class="upload" style="width: 80%" type="warning">Upload Document</sl-button>
+      <sl-button class="download" style="width: 80%">Download Attachments</sl-button>
+    </div>
+
+  </sl-details>
+
+</div>
+
+<!--
+  Problem: When user clicks Download Attachments, all attachments with checkbox selected should download.
+  1. Since the actual files will not have a boolean "selected" option, may be best to go with adding a class to the input when the checkbox is selected.
+  The class will indicate this file should be downloaded.
+  2. The button click will need to initate a loop through the elements. This will most likely be done with a function. When run, if an element with the class "selected" is found...
+  3. ...a call to the attachmentUrl should be made so as to download the file.
+  4. Nice to have: if more than one file is selected zip the files first before download and pull down the zip file.
+
+
+ -->
+
+
+
+<!-- SHOELACE CHECKBOX CODE
+
+  <sl-details>
+  <slot slot="summary"><sl-icon name="file-earmark-medical" label="Documents"></sl-icon>Documents</slot>
+
+  <sl-checkbox class="select-all" [checked]="selectAll" (click)="toggleSelectAll()">Select All</sl-checkbox>
+
+  <div *ngFor="let attachment of detail.attachments" class="attachments">
+    <sl-checkbox [checked]="selectAll"></sl-checkbox>
+    <a [href]="attachment.attachmentUrl">
+      <sl-button type="info" style="width: 90%">
+        <sl-icon name="cloud-arrow-down" label="download file" slot="suffix" ></sl-icon>
+        Attachment
+      </sl-button>
+    </a>
+  </div>
+
+  <div class="attachment-buttons">
+    <sl-button class="upload" style="width: 80%" type="warning">Upload Document</sl-button>
+    <sl-button class="download" style="width: 80%" href="#" download="shoelace.svg">Download Attachments</sl-button>
+  </div>
+
+</sl-details> -->
+
+<!--                            ***WITHOUT POKEMON DATA***
+
 <div class="details-group-example" *ngFor="let detail of details" >
   <sl-details [open]="true">
     <slot slot="summary"><sl-icon name="person" label="Case Details"></sl-icon>Case Details</slot>
@@ -116,44 +291,7 @@
   </sl-details>
 </div>
 
-<!--
-  Problem: When user clicks Download Attachments, all attachments with checkbox selected should download.
-  1. Since the actual files will not have a boolean "selected" option, may be best to go with adding a class to the input when the checkbox is selected.
-  The class will indicate this file should be downloaded.
-  2. The button click will need to initate a loop through the elements. This will most likely be done with a function. When run, if an element with the class "selected" is found...
-  3. ...a call to the attachmentUrl should be made so as to download the file.
-  4. Nice to have: if more than one file is selected zip the files first before download and pull down the zip file.
-
-
  -->
-
-
-
-<!-- SHOELACE CHECKBOX CODE
-
-  <sl-details>
-  <slot slot="summary"><sl-icon name="file-earmark-medical" label="Documents"></sl-icon>Documents</slot>
-
-  <sl-checkbox class="select-all" [checked]="selectAll" (click)="toggleSelectAll()">Select All</sl-checkbox>
-
-  <div *ngFor="let attachment of detail.attachments" class="attachments">
-    <sl-checkbox [checked]="selectAll"></sl-checkbox>
-    <a [href]="attachment.attachmentUrl">
-      <sl-button type="info" style="width: 90%">
-        <sl-icon name="cloud-arrow-down" label="download file" slot="suffix" ></sl-icon>
-        Attachment
-      </sl-button>
-    </a>
-  </div>
-
-  <div class="attachment-buttons">
-    <sl-button class="upload" style="width: 80%" type="warning">Upload Document</sl-button>
-    <sl-button class="download" style="width: 80%" href="#" download="shoelace.svg">Download Attachments</sl-button>
-  </div>
-
-</sl-details> -->
-
-
 
 
 
