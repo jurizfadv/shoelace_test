@@ -1,9 +1,11 @@
 import { Component, ElementRef, OnInit, HostListener } from '@angular/core';
 import SlDetails from 'dist/shoelace/assets/shoelace/components/details/details';
-
+import { HttpClient } from '@angular/common/http';
 import { DetailsService } from '../shared/details.background.service';
 import { DataService } from '../services/data.service';
 import { IAttachments, IDetails } from '../shared/details.model';
+import { from } from 'rxjs';
+
 
 @Component({
   selector: 'app-sl-details',
@@ -14,6 +16,7 @@ export class SlDetailsComponent implements OnInit {
   availableAttachments: IAttachments[] = []
   candidateAge:number = 0;
   details: IDetails[] | undefined
+  candidateDetails: any;
   isDisabled:boolean = false;
   isOpen:string = ''
   moreDetails:boolean = true;
@@ -22,7 +25,7 @@ export class SlDetailsComponent implements OnInit {
   showAge:any;
   totalPokemons: number;
 
-  constructor(private detailsService: DetailsService, public el:ElementRef, private dataService: DataService) {
+  constructor(private detailsService: DetailsService, public el:ElementRef, private dataService: DataService, private http: HttpClient) {
 
    };
 
@@ -40,27 +43,42 @@ export class SlDetailsComponent implements OnInit {
      console.log('inside the hiding host')
    }
 
+  //  ngOnInit() {
+  //   this.dataService.getCandidate().subscribe(candidateDetails => {
+  //     this.candidateDetails = candidateDetails;
+  //   });
+  //   console.log(this.candidateDetails)
+  //  }
+
+  //  Original ngOnInit with Pokemon Request
   ngOnInit() {
     this.detailsService.getDetails().subscribe(details => {
       this.details = details;
     });
-    this.getPokemons();
-  }
 
-  getPokemons() {
-    this.dataService.getPokemon()
-    .subscribe((response:any) => {
-      this.totalPokemons = response.count;
-
-      response.results.forEach(result => {
-        this.dataService.getAdditionalPokemon(result.name)
-          .subscribe((uniqueResponse:any) => {
-            this.pokemons.push(uniqueResponse);
-            console.log(this.pokemons)
-          })
-      })
+    const headers = {'Ocp-Apim-Subscription-Key': '2b056fc992b74902b8fdde11ea7bfbea'}
+    this.http.get(`https://apimeadev.azure-api.net/func-ea-dev/orderDetails`, {headers}).subscribe(details => {
+      this.candidateDetails = details;
     })
+    this.getPokemons();
+    console.log(this.candidateDetails)
   }
+
+  //  GET request to return multiple Pokemon
+    getPokemons() {
+      this.dataService.getPokemon()
+      .subscribe((response:any) => {
+        this.totalPokemons = response.count;
+
+        response.results.forEach(result => {
+          this.dataService.getAdditionalPokemon(result.name)
+            .subscribe((uniqueResponse:any) => {
+              this.pokemons.push(uniqueResponse);
+              console.log(this.pokemons)
+            })
+        })
+      })
+    }
 
   onClick() {
     this.isDisabled = !this.isDisabled

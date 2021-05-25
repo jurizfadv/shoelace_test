@@ -1,6 +1,6 @@
 <div class="details-group-example" *ngFor="let detail of details">
 
-    <sl-details [open]="true" *ngFor="let pokemon of pokemons">
+    <!-- <sl-details [open]="true" *ngFor="let pokemon of pokemons">
       <slot slot="summary"><sl-icon name="person" label="API Data"></sl-icon>Data From API</slot>
 
       <div class="detail-container-pokemon">
@@ -11,6 +11,20 @@
         <h4>Abilities</h4>
         <p class="details">{{pokemon.abilities[0].ability.name | titlecase}}</p>
         <p class="details">{{pokemon.abilities[1].ability.name | titlecase }}</p>
+
+      </div>
+    </sl-details> -->
+
+    <sl-details [open]="true" >
+      <slot slot="summary"><sl-icon name="person" label="API Data"></sl-icon>Data From API</slot>
+
+      <div class="detail-container-pokemon">
+        <h4>First Name</h4>
+        <p class="details">{{ candidateDetails.firstName }}</p>
+        <h4>Last Name</h4>
+        <p class="details">{{ candidateDetails.lastName }}</p>
+        <h4>Case ID</h4>
+        <p class="details">{{ candidateDetails.caseId }}</p>
 
       </div>
 
@@ -134,42 +148,9 @@
 
 </div>
 
-<!--
-  Problem: When user clicks Download Attachments, all attachments with checkbox selected should download.
-  1. Since the actual files will not have a boolean "selected" option, may be best to go with adding a class to the input when the checkbox is selected.
-  The class will indicate this file should be downloaded.
-  2. The button click will need to initate a loop through the elements. This will most likely be done with a function. When run, if an element with the class "selected" is found...
-  3. ...a call to the attachmentUrl should be made so as to download the file.
-  4. Nice to have: if more than one file is selected zip the files first before download and pull down the zip file.
-
-
- -->
 
 
 
-<!-- SHOELACE CHECKBOX CODE
-
-  <sl-details>
-  <slot slot="summary"><sl-icon name="file-earmark-medical" label="Documents"></sl-icon>Documents</slot>
-
-  <sl-checkbox class="select-all" [checked]="selectAll" (click)="toggleSelectAll()">Select All</sl-checkbox>
-
-  <div *ngFor="let attachment of detail.attachments" class="attachments">
-    <sl-checkbox [checked]="selectAll"></sl-checkbox>
-    <a [href]="attachment.attachmentUrl">
-      <sl-button type="info" style="width: 90%">
-        <sl-icon name="cloud-arrow-down" label="download file" slot="suffix" ></sl-icon>
-        Attachment
-      </sl-button>
-    </a>
-  </div>
-
-  <div class="attachment-buttons">
-    <sl-button class="upload" style="width: 80%" type="warning">Upload Document</sl-button>
-    <sl-button class="download" style="width: 80%" href="#" download="shoelace.svg">Download Attachments</sl-button>
-  </div>
-
-</sl-details> -->
 
 <!--                            ***WITHOUT POKEMON DATA***
 

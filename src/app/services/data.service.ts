@@ -9,13 +9,13 @@ export class DataService {
   constructor(private http: HttpClient) { }
 
   // GET Request - Get initial list of Pokemon
-  getPokemon() {
-    return this.http.get(`https://pokeapi.co/api/v2/pokemon?limit=1`)
-  }
+    getPokemon() {
+      return this.http.get(`https://pokeapi.co/api/v2/pokemon?limit=1`)
+    }
 
   // GET Request - Get Additional Pokemon
-  getAdditionalPokemon(name:string) {
-    return this.http.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
-  }
+    getAdditionalPokemon(name:string) {
+      return this.http.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
+    }
 
 }
